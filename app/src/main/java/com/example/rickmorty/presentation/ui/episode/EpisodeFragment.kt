@@ -13,9 +13,6 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.Navigation
 import com.example.rickmorty.databinding.FragmentEpisodeBinding
-import com.example.rickmorty.presentation.ui.characters.CharacterFragmentDirections
-import com.example.rickmorty.presentation.ui.characters.CharacterViewModel
-import com.example.rickmorty.presentation.ui.characters.adapters.CharacterAdapter
 import com.example.rickmorty.presentation.ui.episode.adapters.EpisodeAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

@@ -12,8 +12,6 @@
     <color name="gray">#AAAAAD</color>
     <color name="button_gray_text">#C3C4C9</color>
     <color name="bottom_menu_gray">#F0F0F0</color>
-    <color name="pink">#FD3A69</color>
-    <color name="pink_light">#f4ced7</color>
     <color name="green">#17723B</color>
     <color name="rapeYellow">#F2CE1B</color>
 </resources>
