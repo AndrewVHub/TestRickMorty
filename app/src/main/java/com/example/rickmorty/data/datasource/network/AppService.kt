@@ -1,7 +1,6 @@
 package com.example.rickmorty.data.datasource.network
 
-import com.example.rickmorty.data.model.Character
-import com.example.rickmorty.data.model.CharactersList
+import com.example.rickmorty.data.model.*
 import retrofit2.http.GET
 
 interface AppService {
@@ -11,5 +10,11 @@ interface AppService {
     }
 
     @GET("character")
-    suspend fun getCharacters(): CharactersList
+    suspend fun getCharacters(): ApiResponse<Character>
+
+    @GET("location")
+    suspend fun getLocations(): ApiResponse<Location>
+
+    @GET("episode")
+    suspend fun getEpisode(): ApiResponse<Episode>
 }

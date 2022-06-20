@@ -3,7 +3,6 @@ package com.example.rickmorty.presentation.ui.characters
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.rickmorty.databinding.FragmentCharacterBinding
 import com.example.rickmorty.presentation.ui.characters.adapters.CharacterAdapter
-import com.example.rickmorty.presentation.ui.home.HomeFragmentDirections
-import com.example.rickmorty.presentation.utils.hide
-import com.example.rickmorty.presentation.utils.show
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

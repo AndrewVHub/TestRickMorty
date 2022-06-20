@@ -5,15 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickmorty.data.model.Character
-import com.example.rickmorty.data.model.CharactersList
+import com.example.rickmorty.data.model.ApiResponse
 import com.example.rickmorty.domain.interactor.GetCharactersUseCase
 import kotlinx.coroutines.launch
 
 class CharacterViewModel(
     private val getCharactersUseCase: GetCharactersUseCase
 ) : ViewModel() {
-    private val _characterList = MutableLiveData<CharactersList>()
-    val characterList: LiveData<CharactersList> = _characterList
+    private val _characterList = MutableLiveData<ApiResponse<Character>>()
+    val characterList: LiveData<ApiResponse<Character>> = _characterList
 
     private val _searchList = MutableLiveData<List<Character>>()
     val searchList: LiveData<List<Character>> = _searchList

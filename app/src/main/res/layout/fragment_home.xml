@@ -24,6 +24,7 @@
         android:backgroundTint="@color/green"
         android:fontFamily="@font/roboto_bold"
         android:text="Персонажи"
+        android:layout_marginHorizontal="25dp"
         android:textSize="20sp"
         app:icon="@drawable/ic_character"
         app:iconGravity="textStart"
@@ -35,8 +36,9 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLocation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/green"
         android:fontFamily="@font/roboto_bold"
         android:text="Локации"
@@ -44,14 +46,15 @@
         app:icon="@drawable/ic_world"
         app:iconGravity="textStart"
         app:iconSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnCharacter"
+        app:layout_constraintStart_toStartOf="@+id/btnCharacter"
         app:layout_constraintTop_toBottomOf="@+id/btnCharacter" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnEpisode"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/green"
         android:fontFamily="@font/roboto_bold"
         android:text="Эпизоды"
@@ -59,8 +62,8 @@
         app:icon="@drawable/ic_television"
         app:iconGravity="textStart"
         app:iconSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnCharacter"
+        app:layout_constraintStart_toStartOf="@+id/btnCharacter"
         app:layout_constraintTop_toBottomOf="@+id/btnLocation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

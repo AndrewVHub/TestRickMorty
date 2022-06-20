@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_episodeFragment"
             app:destination="@id/episodeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterFragment"
@@ -33,6 +36,14 @@
         tools:layout="@layout/fragment_episode" >
         <action
             android:id="@+id/action_episodeFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.rickmorty.presentation.ui.location.LocationFragment"
+        android:label="LocationFragment" >
+        <action
+            android:id="@+id/action_locationFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
