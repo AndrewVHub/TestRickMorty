@@ -24,6 +24,9 @@ class HomeFragment : Fragment() {
         btnEpisode.setOnClickListener {
             Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToEpisodeFragment())
         }
+        btnLocation.setOnClickListener {
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToLocationFragment())
+        }
     }
 
 

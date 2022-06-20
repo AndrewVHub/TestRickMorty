@@ -1,4 +1,4 @@
-package com.example.rickmorty.presentation.ui.episode
+package com.example.rickmorty.presentation.ui.location
 
 import android.app.Activity
 import android.content.Context
@@ -12,25 +12,21 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.Navigation
-import com.example.rickmorty.databinding.FragmentEpisodeBinding
-import com.example.rickmorty.presentation.ui.characters.CharacterFragmentDirections
-import com.example.rickmorty.presentation.ui.characters.CharacterViewModel
-import com.example.rickmorty.presentation.ui.characters.adapters.CharacterAdapter
-import com.example.rickmorty.presentation.ui.episode.adapters.EpisodeAdapter
+import com.example.rickmorty.databinding.FragmentLocationBinding
+import com.example.rickmorty.presentation.ui.location.adapters.LocationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EpisodeFragment : Fragment() {
+class LocationFragment : Fragment() {
 
-    private lateinit var binding: FragmentEpisodeBinding
-    private val viewModel: EpisodeViewModel by viewModel()
+    private lateinit var binding: FragmentLocationBinding
+    private val viewModel: LocationViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = with(binding) {
         super.onViewCreated(view, savedInstanceState)
-
-        val adapterEpisode = EpisodeAdapter()
-        recyclerEpisode.adapter = adapterEpisode
+        val adapterLocation = LocationAdapter()
+        recyclerLocation.adapter = adapterLocation
         viewModel.searchList.observe(viewLifecycleOwner){data ->
-            adapterEpisode.collection = data
+            adapterLocation.collection = data
         }
 
         swipeRefresh.setOnRefreshListener {
@@ -42,8 +38,8 @@ class EpisodeFragment : Fragment() {
 
         viewModel.action.observe(viewLifecycleOwner) { action ->
             when (action) {
-                is EpisodeViewModel.Action.HideLoader -> swipeRefresh.isRefreshing = false
-                is EpisodeViewModel.Action.ShowError -> Toast.makeText(
+                is LocationViewModel.Action.HideLoader -> swipeRefresh.isRefreshing = false
+                is LocationViewModel.Action.ShowError -> Toast.makeText(
                     context,
                     action.errorMessage,
                     Toast.LENGTH_LONG
@@ -52,12 +48,12 @@ class EpisodeFragment : Fragment() {
         }
 
         ivBackRow.setOnClickListener {
-            Navigation.findNavController(view).navigate(EpisodeFragmentDirections.actionEpisodeFragmentToHomeFragment())
+            Navigation.findNavController(view).navigate(LocationFragmentDirections.actionLocationFragmentToHomeFragment())
         }
 
         //Search Events place
         etSearch.addTextChangedListener {
-            viewModel.searchCharacter(it.toString())
+            viewModel.searchLocation(it.toString())
         }
         etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -66,14 +62,14 @@ class EpisodeFragment : Fragment() {
             true
         }
         //End Search Events place
-    }
 
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentEpisodeBinding.inflate(inflater, container, false)
+        binding = FragmentLocationBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -86,5 +82,4 @@ class EpisodeFragment : Fragment() {
         val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
 }
