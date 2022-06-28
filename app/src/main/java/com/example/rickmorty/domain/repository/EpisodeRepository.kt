@@ -1,8 +1,7 @@
 package com.example.rickmorty.domain.repository
 
-import com.example.rickmorty.data.model.ApiResponse
-import com.example.rickmorty.data.model.Episode
+import com.example.rickmorty.data.models.episode.Episode
 
 interface EpisodeRepository {
-    suspend fun getEpisode(): ApiResponse<Episode>
+    suspend fun getEpisode(): List<Episode>
 }

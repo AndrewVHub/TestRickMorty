@@ -23,13 +23,14 @@ android {
         enabled true
     }
 
-
-    dataBinding {
-        enabled true
-    }
-
     buildTypes {
+
+        debug {
+            buildConfigField 'String', 'BASE_URL', '"https://rickandmortyapi.com/api/"'
+        }
+
         release {
+            buildConfigField 'String', 'BASE_URL', '"https://rickandmortyapi.com/api/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -45,8 +46,8 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     testImplementation 'junit:junit:4.13.2'
@@ -86,7 +87,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
 
     //Internet
-    def okHttpVersion = "4.8.0"
+    def okHttpVersion = "4.9.1"
     def retrofitVersion = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"

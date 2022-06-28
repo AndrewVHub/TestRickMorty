@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickmorty.R
-import com.example.rickmorty.data.model.Location
+import com.example.rickmorty.data.models.location.Location
 import com.example.rickmorty.databinding.LocationItemBinding
 
 class LocationAdapter: RecyclerView.Adapter<LocationAdapter.LocationViewHolder>() {

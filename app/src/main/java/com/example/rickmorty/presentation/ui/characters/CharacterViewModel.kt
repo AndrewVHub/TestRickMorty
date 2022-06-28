@@ -4,16 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickmorty.data.model.Character
-import com.example.rickmorty.data.model.ApiResponse
+import com.example.rickmorty.data.constants.ConstantKeys
+import com.example.rickmorty.data.models.character.Character
 import com.example.rickmorty.domain.interactor.GetCharactersUseCase
 import kotlinx.coroutines.launch
 
 class CharacterViewModel(
     private val getCharactersUseCase: GetCharactersUseCase
 ) : ViewModel() {
-    private val _characterList = MutableLiveData<ApiResponse<Character>>()
-    val characterList: LiveData<ApiResponse<Character>> = _characterList
+    private var characterList = listOf<Character>()
 
     private val _searchList = MutableLiveData<List<Character>>()
     val searchList: LiveData<List<Character>> = _searchList
@@ -28,28 +27,28 @@ class CharacterViewModel(
     fun load() {
         viewModelScope.launch {
             try {
-                _characterList.postValue(getCharactersUseCase.execute())
-                _searchList.postValue(getCharactersUseCase.execute().results)
+                characterList = getCharactersUseCase.execute()
+                _searchList.postValue(characterList)
             } catch (e: Throwable) {
-                _action.value = CharacterAction.ShowError("Нестабильное соединение")
+                _action.value = CharacterAction.ShowError(ConstantKeys.LOST_INTERNET)
             }
             _action.value = CharacterAction.HideLoader
         }
     }
 
     fun searchCharacter(inputText: String) {
-        val resList = mutableListOf<Character>()
-        inputText.let {
-            _characterList.value?.results?.forEach { item ->
-                if (item.name.lowercase().contains(it))
-                    resList.add(item)
+        if (inputText.isEmpty()){
+            _searchList.postValue(characterList)
+        }else{
+            _searchList.value = characterList.filter {
+                it.name.lowercase().contains(inputText)
             }
-            _searchList.value = resList
         }
     }
 
+    //Если сделаю удаление (крестик в EditText)
     fun transactionAllData(){
-        _searchList.value = characterList.value?.results
+        _searchList.value = characterList
     }
 
 

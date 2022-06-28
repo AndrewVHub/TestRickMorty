@@ -1,5 +1,6 @@
 package com.example.rickmorty.di
 
+import com.example.rickmorty.BuildConfig
 import com.example.rickmorty.data.datasource.RemoteDataSource
 import com.example.rickmorty.data.datasource.network.AppService
 import com.example.rickmorty.data.repository.CharacterRepositoryImpl
@@ -23,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val serviceModule = module {
     single<AppService> {
         Retrofit.Builder()
-            .baseUrl(AppService.BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build().create(AppService::class.java)

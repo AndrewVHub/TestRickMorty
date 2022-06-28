@@ -7,40 +7,14 @@
     android:background="@color/blue_dark"
     tools:context=".presentation.ui.characters.CharacterFragment">
 
-
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/ivBackRow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/ic_backrow"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/roboto_bold"
-                android:text="ЛОКАЦИИ"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.appcompat.widget.Toolbar>
+        android:theme="@style/CustomToolbarTheme"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/characters"
+        app:titleTextAppearance="@style/Toolbar.CustomTitleText" />
 
     <EditText
         android:id="@+id/etSearch"
@@ -54,7 +28,7 @@
         android:drawableEnd="@drawable/ic_icon_search_light"
         android:ems="10"
         android:fontFamily="@font/roboto_bold"
-        android:hint="Search"
+        android:hint="@string/search_input_text"
         android:imeOptions="actionDone"
         android:inputType="textAutoCorrect"
         android:paddingHorizontal="13dp"

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RickMorty</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -11,7 +12,6 @@
     <string name="gender">gender:</string>
     <string name="gender_value">male</string>
     <string name="species">species:</string>
-    <string name="species_value">human</string>
     <string name="location">location:</string>
     <string name="location_value">Citadel of Rick</string>
     <string name="name_episode">Pilot</string>
@@ -23,5 +23,4 @@
     <string name="type_location_value">unknow</string>
     <string name="dimension">dimension:</string>
     <string name="dimension_location_value">unknow</string>
-
 </resources>

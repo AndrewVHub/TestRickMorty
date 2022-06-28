@@ -18,61 +18,51 @@
 
     <TextView
         android:id="@+id/tvName"
+        style="@style/CustomItemNameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Planeta"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:text="@string/name_planet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/shape"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvType"
+        style="@style/CustomItemDescriptionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="type:"
-        android:textColor="@color/gray"
-        android:textSize="15sp"
+        android:text="@string/type"
         app:layout_constraintStart_toStartOf="@+id/tvName"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
     <TextView
         android:id="@+id/tvTypeEdit"
+        style="@style/CustomItemDescriptionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="unknow"
-        android:textColor="@color/gray"
-        android:textSize="15sp"
+        android:text="@string/type_location_value"
         app:layout_constraintEnd_toEndOf="@+id/tvName"
         app:layout_constraintStart_toEndOf="@+id/tvType"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
     <TextView
         android:id="@+id/tvDimension"
+        style="@style/CustomItemDescriptionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="dimension:"
-        android:textColor="@color/gray"
-        android:textSize="15sp"
+        android:text="@string/dimension"
         app:layout_constraintStart_toStartOf="@+id/tvType"
         app:layout_constraintTop_toBottomOf="@+id/tvType" />
 
     <TextView
         android:id="@+id/tvDimensionEdit"
+        style="@style/CustomItemDescriptionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="unknow"
-        android:textColor="@color/gray"
-        android:textSize="15sp"
+        android:text="@string/dimension_location_value"
         app:layout_constraintEnd_toEndOf="@+id/tvTypeEdit"
         app:layout_constraintStart_toEndOf="@+id/tvDimension"
         app:layout_constraintTop_toBottomOf="@+id/tvTypeEdit" />

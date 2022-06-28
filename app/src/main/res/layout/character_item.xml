@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="16dp"
     android:layout_marginTop="1dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:paddingVertical="16dp">
 
     <ImageView
         android:id="@+id/ivImageItem"
@@ -23,13 +23,11 @@
 
     <TextView
         android:id="@+id/tvName"
+        style="@style/CustomItemNameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Rick Sanchez"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:text="@string/character_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toEndOf="@+id/ivImageItem"
@@ -37,24 +35,21 @@
 
     <TextView
         android:id="@+id/tvGender"
+        style="@style/CustomItemDescriptionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="gender:"
-        android:textColor="@color/gray"
-        android:textSize="15sp"
+        android:text="@string/gender"
+
         app:layout_constraintStart_toStartOf="@+id/tvName"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
     <TextView
         android:id="@+id/tvGenderEdit"
+        style="@style/CustomItemDescriptionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="male"
         android:layout_marginStart="5dp"
-        android:textColor="@color/gray"
-        android:textSize="15sp"
+        android:text="@string/gender_value"
         app:layout_constraintStart_toEndOf="@+id/tvGender"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
@@ -63,7 +58,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
-        android:text="species:"
+        android:text="@string/species"
         android:textColor="@color/gray"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/tvGender"
@@ -71,36 +66,30 @@
 
     <TextView
         android:id="@+id/tvSpeciesEdit"
+        style="@style/CustomItemDescriptionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="human"
-        android:textColor="@color/gray"
-        android:textSize="15sp"
+        android:text="@string/species_value"
         app:layout_constraintStart_toEndOf="@+id/tvSpecies"
         app:layout_constraintTop_toBottomOf="@+id/tvGenderEdit" />
 
     <TextView
         android:id="@+id/tvLocation"
+        style="@style/CustomItemDescriptionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="location:"
-        android:textColor="@color/gray"
-        android:textSize="15sp"
+        android:text="@string/location"
         app:layout_constraintStart_toStartOf="@+id/tvSpecies"
         app:layout_constraintTop_toBottomOf="@+id/tvSpecies" />
 
     <TextView
         android:id="@+id/tvLocationEdit"
+        style="@style/CustomItemDescriptionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Citadel of Rick"
-        android:textColor="@color/gray"
-        android:textSize="15sp"
+        android:text="@string/location_value"
         app:layout_constraintEnd_toEndOf="@+id/tvName"
         app:layout_constraintStart_toEndOf="@+id/tvLocation"
         app:layout_constraintTop_toBottomOf="@+id/tvSpeciesEdit" />

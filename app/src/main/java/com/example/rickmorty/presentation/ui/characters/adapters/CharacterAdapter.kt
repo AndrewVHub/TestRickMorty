@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickmorty.R
-import com.example.rickmorty.data.model.Character
 import com.example.rickmorty.databinding.CharacterItemBinding
 import com.example.rickmorty.presentation.utils.load
+import com.example.rickmorty.data.models.character.Character
 
 class CharacterAdapter: RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 

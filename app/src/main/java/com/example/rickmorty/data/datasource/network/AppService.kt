@@ -1,20 +1,19 @@
 package com.example.rickmorty.data.datasource.network
 
-import com.example.rickmorty.data.model.*
+import com.example.rickmorty.data.models.*
+import com.example.rickmorty.data.models.character.CharacterResponse
+import com.example.rickmorty.data.models.episode.EpisodeResponse
+import com.example.rickmorty.data.models.location.LocationResponse
 import retrofit2.http.GET
 
 interface AppService {
 
-    companion object{
-        const val BASE_URL = "https://rickandmortyapi.com/api/"
-    }
-
     @GET("character")
-    suspend fun getCharacters(): ApiResponse<Character>
+    suspend fun getCharacters(): ApiResponse<CharacterResponse>
 
     @GET("location")
-    suspend fun getLocations(): ApiResponse<Location>
+    suspend fun getLocations(): ApiResponse<LocationResponse>
 
     @GET("episode")
-    suspend fun getEpisode(): ApiResponse<Episode>
+    suspend fun getEpisode(): ApiResponse<EpisodeResponse>
 }

@@ -2,36 +2,35 @@ package com.example.rickmorty.presentation.ui.location
 
 import android.app.Activity
 import android.content.Context
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
+import android.view.View.OnTouchListener
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import androidx.navigation.Navigation
 import com.example.rickmorty.databinding.FragmentLocationBinding
+import com.example.rickmorty.presentation.ui.base.BaseFragment
 import com.example.rickmorty.presentation.ui.location.adapters.LocationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LocationFragment : Fragment() {
 
-    private lateinit var binding: FragmentLocationBinding
+class LocationFragment : BaseFragment<FragmentLocationBinding>(FragmentLocationBinding::inflate) {
+
     private val viewModel: LocationViewModel by viewModel()
+    private val adapter = LocationAdapter()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-        val adapterLocation = LocationAdapter()
-        recyclerLocation.adapter = adapterLocation
+    override fun FragmentLocationBinding.initialize() {
+
+        recyclerLocation.adapter = adapter
+
         viewModel.searchList.observe(viewLifecycleOwner){data ->
-            adapterLocation.collection = data
+            adapter.collection = data
         }
 
         swipeRefresh.setOnRefreshListener {
             viewModel.load()
-            context?.let { hideKeyboard(it, view) }
+            context?.let { hideKeyboard(it, requireView()) }
             etSearch.text.clear()
 
         }
@@ -47,35 +46,17 @@ class LocationFragment : Fragment() {
             }
         }
 
-        ivBackRow.setOnClickListener {
-            Navigation.findNavController(view).navigate(LocationFragmentDirections.actionLocationFragmentToHomeFragment())
-        }
-
         //Search Events place
         etSearch.addTextChangedListener {
             viewModel.searchLocation(it.toString())
         }
         etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                context?.let { hideKeyboard(it, view) }
+                context?.let { hideKeyboard(it, requireView()) }
             }
             true
         }
         //End Search Events place
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentLocationBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-        viewModel.transactionAllData()
     }
 
     private fun hideKeyboard(context: Context, view: View) {
@@ -83,3 +64,6 @@ class LocationFragment : Fragment() {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
+
+
+

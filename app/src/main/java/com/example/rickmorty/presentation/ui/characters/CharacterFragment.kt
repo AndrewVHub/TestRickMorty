@@ -12,28 +12,32 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import com.example.rickmorty.databinding.FragmentCharacterBinding
+import com.example.rickmorty.presentation.ui.base.BaseFragment
 import com.example.rickmorty.presentation.ui.characters.adapters.CharacterAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class CharacterFragment : Fragment() {
+class CharacterFragment : BaseFragment<FragmentCharacterBinding>(FragmentCharacterBinding::inflate) {
 
-    private lateinit var binding: FragmentCharacterBinding
+    private val adapter = CharacterAdapter()
     private val viewModel: CharacterViewModel by viewModel()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun FragmentCharacterBinding.initialize() {
 
-        val adapterCharacter = CharacterAdapter()
-        recyclerCharacter.adapter = adapterCharacter
+        recyclerCharacter.adapter = adapter
+
         viewModel.searchList.observe(viewLifecycleOwner){data ->
-            adapterCharacter.collection = data
+            adapter.collection = data
         }
 
+//        toolbar.setNavigationOnClickListener {
+//            findNavController(requireView()).navigate()
+//        }
         swipeRefresh.setOnRefreshListener {
             viewModel.load()
-            context?.let { hideKeyboard(it, view) }
+            context?.let { hideKeyboard(it, requireView()) }
             etSearch.text.clear()
 
         }
@@ -49,37 +53,17 @@ class CharacterFragment : Fragment() {
             }
         }
 
-        ivBackRow.setOnClickListener {
-            Navigation.findNavController(view).navigate(CharacterFragmentDirections.actionCharacterFragmentToHomeFragment())
-        }
-
         //Search Events place
         etSearch.addTextChangedListener {
             viewModel.searchCharacter(it.toString())
         }
         etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                context?.let { hideKeyboard(it, view) }
+                context?.let { hideKeyboard(it, requireView()) }
             }
             true
         }
         //End Search Events place
-
-
-
-
-    }
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentCharacterBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-        viewModel.transactionAllData()
     }
 
     private fun hideKeyboard(context: Context, view: View) {

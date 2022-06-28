@@ -1,8 +1,7 @@
 package com.example.rickmorty.domain.repository
 
-import com.example.rickmorty.data.model.ApiResponse
-import com.example.rickmorty.data.model.Location
+import com.example.rickmorty.data.models.location.Location
 
 interface LocationRepository {
-    suspend fun getLocation(): ApiResponse<Location>
+    suspend fun getLocation(): List<Location>
 }

@@ -4,16 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickmorty.data.model.ApiResponse
-import com.example.rickmorty.data.model.Location
+import com.example.rickmorty.data.models.ApiResponse
+import com.example.rickmorty.data.models.location.Location
 import com.example.rickmorty.domain.interactor.GetLocationUseCase
 import kotlinx.coroutines.launch
 
 class LocationViewModel (
     private val getLocationUseCase: GetLocationUseCase
 ) : ViewModel() {
-    private val _locationList = MutableLiveData<ApiResponse<Location>>()
-    val locationList: LiveData<ApiResponse<Location>> = _locationList
+
+    private var locationList = listOf<Location>()
 
     private val _searchList = MutableLiveData<List<Location>>()
     val searchList: LiveData<List<Location>> = _searchList
@@ -28,8 +28,8 @@ class LocationViewModel (
     fun load() {
         viewModelScope.launch {
             try {
-                _locationList.postValue(getLocationUseCase.execute())
-                _searchList.postValue(getLocationUseCase.execute().results)
+                _searchList.postValue(getLocationUseCase.execute())
+                locationList = getLocationUseCase.execute()
             } catch (e: Throwable) {
                 _action.value = Action.ShowError("Нестабильное соединение")
             }
@@ -38,18 +38,17 @@ class LocationViewModel (
     }
 
     fun searchLocation(inputText: String) {
-        val resList = mutableListOf<Location>()
-        inputText.let {
-            _locationList.value?.results?.forEach { item ->
-                if (item.name.lowercase().contains(it))
-                    resList.add(item)
+        if (inputText.isEmpty()){
+            _searchList.postValue(locationList)
+        }else{
+            _searchList.value = locationList.filter {
+                it.name.lowercase().contains(inputText)
             }
-            _searchList.value = resList
         }
     }
 
     fun transactionAllData(){
-        _searchList.value = locationList.value?.results
+        _searchList.value = locationList
     }
 
 

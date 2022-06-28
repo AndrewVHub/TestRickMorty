@@ -4,16 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickmorty.data.model.ApiResponse
-import com.example.rickmorty.data.model.Episode
+import com.example.rickmorty.data.models.episode.Episode
 import com.example.rickmorty.domain.interactor.GetEpisodeUseCase
 import kotlinx.coroutines.launch
 
 class EpisodeViewModel(
     private val getEpisodeUseCase: GetEpisodeUseCase
 ) : ViewModel() {
-    private val _episodeList = MutableLiveData<ApiResponse<Episode>>()
-    val episodeList: LiveData<ApiResponse<Episode>> = _episodeList
+
+    private var episodeList = listOf<Episode>()
 
     private val _searchList = MutableLiveData<List<Episode>>()
     val searchList: LiveData<List<Episode>> = _searchList
@@ -28,8 +27,8 @@ class EpisodeViewModel(
     fun load() {
         viewModelScope.launch {
             try {
-                _episodeList.postValue(getEpisodeUseCase.execute())
-                _searchList.postValue(getEpisodeUseCase.execute().results)
+                _searchList.postValue(getEpisodeUseCase.execute())
+                episodeList = getEpisodeUseCase.execute()
             } catch (e: Throwable) {
                 _action.value = Action.ShowError("Нестабильное соединение")
             }
@@ -37,19 +36,18 @@ class EpisodeViewModel(
         }
     }
 
-    fun searchCharacter(inputText: String) {
-        val resList = mutableListOf<Episode>()
-        inputText.let {
-            _episodeList.value?.results?.forEach { item ->
-                if (item.name.lowercase().contains(it))
-                    resList.add(item)
+    fun searchEpisode(inputText: String) {
+        if (inputText.isEmpty()){
+            _searchList.postValue(episodeList)
+        }else{
+            _searchList.value = episodeList.filter {
+                it.name.lowercase().contains(inputText)
             }
-            _searchList.value = resList
         }
     }
 
     fun transactionAllData(){
-        _searchList.value = episodeList.value?.results
+        _searchList.value = episodeList
     }
 
 

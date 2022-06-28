@@ -13,26 +13,25 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.Navigation
 import com.example.rickmorty.databinding.FragmentEpisodeBinding
+import com.example.rickmorty.presentation.ui.base.BaseFragment
 import com.example.rickmorty.presentation.ui.episode.adapters.EpisodeAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EpisodeFragment : Fragment() {
+class EpisodeFragment : BaseFragment<FragmentEpisodeBinding>(FragmentEpisodeBinding::inflate) {
 
-    private lateinit var binding: FragmentEpisodeBinding
     private val viewModel: EpisodeViewModel by viewModel()
+    private val adapter = EpisodeAdapter()
+    override fun FragmentEpisodeBinding.initialize() {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
+        recyclerEpisode.adapter = adapter
 
-        val adapterEpisode = EpisodeAdapter()
-        recyclerEpisode.adapter = adapterEpisode
-        viewModel.searchList.observe(viewLifecycleOwner){data ->
-            adapterEpisode.collection = data
+        viewModel.searchList.observe(viewLifecycleOwner) { data ->
+            adapter.collection = data
         }
 
         swipeRefresh.setOnRefreshListener {
             viewModel.load()
-            context?.let { hideKeyboard(it, view) }
+            context?.let { hideKeyboard(it, requireView()) }
             etSearch.text.clear()
 
         }
@@ -48,40 +47,21 @@ class EpisodeFragment : Fragment() {
             }
         }
 
-        ivBackRow.setOnClickListener {
-            Navigation.findNavController(view).navigate(EpisodeFragmentDirections.actionEpisodeFragmentToHomeFragment())
-        }
-
         //Search Events place
         etSearch.addTextChangedListener {
-            viewModel.searchCharacter(it.toString())
+            viewModel.searchEpisode(it.toString())
         }
         etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                context?.let { hideKeyboard(it, view) }
+                context?.let { hideKeyboard(it, requireView()) }
             }
             true
         }
         //End Search Events place
     }
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentEpisodeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-        viewModel.transactionAllData()
-    }
-
     private fun hideKeyboard(context: Context, view: View) {
         val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import com.example.rickmorty.databinding.FragmentHomeBinding
 
 
@@ -18,13 +19,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnCharacter.setOnClickListener {
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToCharacterFragment())
+            findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToCharacterFragment())
         }
         btnEpisode.setOnClickListener {
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToEpisodeFragment())
+            findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToEpisodeFragment())
         }
         btnLocation.setOnClickListener {
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToLocationFragment())
+            findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToLocationFragment())
         }
     }
 
