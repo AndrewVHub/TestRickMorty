@@ -9,7 +9,7 @@ data class EpisodeResponse(
     @SerializedName("episode") val episode: String
 )
 
-data class Episode(
+data class EpisodeModel(
     val id: Int,
     val name: String,
     val airDate: String,

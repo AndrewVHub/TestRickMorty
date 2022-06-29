@@ -9,7 +9,7 @@ data class LocationResponse(
     @SerializedName("dimension") val dimension: String
 )
 
-data class Location(
+data class LocationModel(
     val id: Int,
     val name: String,
     val type: String,

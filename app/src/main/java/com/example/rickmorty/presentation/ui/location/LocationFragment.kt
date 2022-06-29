@@ -2,13 +2,12 @@ package com.example.rickmorty.presentation.ui.location
 
 import android.app.Activity
 import android.content.Context
-import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.findNavController
 import com.example.rickmorty.databinding.FragmentLocationBinding
 import com.example.rickmorty.presentation.ui.base.BaseFragment
 import com.example.rickmorty.presentation.ui.location.adapters.LocationAdapter
@@ -33,6 +32,10 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>(FragmentLocationB
             context?.let { hideKeyboard(it, requireView()) }
             etSearch.text.clear()
 
+        }
+
+        toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
         }
 
         viewModel.action.observe(viewLifecycleOwner) { action ->

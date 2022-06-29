@@ -2,17 +2,12 @@ package com.example.rickmorty.presentation.ui.characters
 
 import android.app.Activity
 import android.content.Context
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.rickmorty.databinding.FragmentCharacterBinding
 import com.example.rickmorty.presentation.ui.base.BaseFragment
 import com.example.rickmorty.presentation.ui.characters.adapters.CharacterAdapter
@@ -32,12 +27,13 @@ class CharacterFragment : BaseFragment<FragmentCharacterBinding>(FragmentCharact
             adapter.collection = data
         }
 
-//        toolbar.setNavigationOnClickListener {
-//            findNavController(requireView()).navigate()
-//        }
+        toolbar.setNavigationOnClickListener {
+            //Back to HomeFragment
+            findNavController().popBackStack()
+        }
         swipeRefresh.setOnRefreshListener {
             viewModel.load()
-            context?.let { hideKeyboard(it, requireView()) }
+            hideKeyboard(requireContext(), requireView())
             etSearch.text.clear()
 
         }

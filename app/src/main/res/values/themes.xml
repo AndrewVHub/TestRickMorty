@@ -12,47 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-
-
-
-
-    </style>
-
-    <!-- CUSTOM TOOLBAR -->
-    <style name="CustomToolbarTheme" parent="Widget.Material3.Toolbar">
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="navigationIcon">@drawable/ic_backrow</item>
-        <item name="titleCentered">true</item>
-    </style>
-
-    <!-- CUSTOM TOOLBAR TITLE -->
-    <style name="Toolbar.CustomTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">29sp</item>
-        <item name="android:fontFamily">@font/roboto_bold</item>
-    </style>
-
-    <!-- CUSTOM BUTTON HOME -->
-    <style name="CustomHomeButton" parent="Widget.MaterialComponents.Button">
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="backgroundTint">@color/green</item>
-        <item name="fontFamily">@font/roboto_bold</item>
-        <item name="android:textSize">20sp</item>
-        <item name="iconGravity">textStart</item>
-        <item name="iconSize">20dp</item>
-    </style>
-
-    <!-- CUSTOM TEXTVIEW DESCRIPTION ITEM -->
-    <style name="CustomItemDescriptionTextView" parent="Widget.AppCompat.TextView">
-        <item name="fontFamily">@font/roboto_bold</item>
-        <item name="android:textColor">@color/gray</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-
-    <!-- CUSTOM TEXTVIEW TITLE ITEM -->
-    <style name="CustomItemNameTextView" parent="Widget.AppCompat.TextView">
-        <item name="fontFamily">@font/roboto_bold</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>

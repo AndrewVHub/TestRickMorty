@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rickmorty.R
 import com.example.rickmorty.databinding.CharacterItemBinding
 import com.example.rickmorty.presentation.utils.load
-import com.example.rickmorty.data.models.character.Character
+import com.example.rickmorty.data.models.character.CharacterModel
 
 class CharacterAdapter: RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
-    var collection: List<Character>? = emptyList()
+    var collection: List<CharacterModel>? = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -19,7 +19,7 @@ class CharacterAdapter: RecyclerView.Adapter<CharacterAdapter.CharacterViewHolde
 
     inner class CharacterViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private val binding = CharacterItemBinding.bind(view)
-        fun bind(item: Character) = with(binding){
+        fun bind(item: CharacterModel) = with(binding){
             tvName.text = item.name
             tvGenderEdit.text = item.gender
             tvLocationEdit.text = item.location.name

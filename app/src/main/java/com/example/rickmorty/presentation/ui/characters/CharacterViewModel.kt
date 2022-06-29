@@ -2,20 +2,19 @@ package com.example.rickmorty.presentation.ui.characters
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickmorty.data.constants.ConstantKeys
-import com.example.rickmorty.data.models.character.Character
-import com.example.rickmorty.domain.interactor.GetCharactersUseCase
+import com.example.rickmorty.data.models.character.CharacterModel
+import com.example.rickmorty.presentation.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class CharacterViewModel(
-    private val getCharactersUseCase: GetCharactersUseCase
-) : ViewModel() {
-    private var characterList = listOf<Character>()
+    private val interactor: CharacterInteractor
+) : BaseViewModel() {
+    private var characterModelList = emptyList<CharacterModel>()
 
-    private val _searchList = MutableLiveData<List<Character>>()
-    val searchList: LiveData<List<Character>> = _searchList
+    private val _searchList = MutableLiveData<List<CharacterModel>>()
+    val searchList: LiveData<List<CharacterModel>> = _searchList
 
     private val _action = MutableLiveData<CharacterAction>()
     val action: LiveData<CharacterAction> = _action
@@ -23,12 +22,14 @@ class CharacterViewModel(
     init {
         load()
     }
-
     fun load() {
+//        load(_searchList){
+//            interactor.getCharacterList()
+//        }
         viewModelScope.launch {
             try {
-                characterList = getCharactersUseCase.execute()
-                _searchList.postValue(characterList)
+                characterModelList = interactor.getCharacterList()
+                _searchList.postValue(characterModelList)
             } catch (e: Throwable) {
                 _action.value = CharacterAction.ShowError(ConstantKeys.LOST_INTERNET)
             }
@@ -38,17 +39,17 @@ class CharacterViewModel(
 
     fun searchCharacter(inputText: String) {
         if (inputText.isEmpty()){
-            _searchList.postValue(characterList)
+            _searchList.postValue(characterModelList)
         }else{
-            _searchList.value = characterList.filter {
-                it.name.lowercase().contains(inputText)
+            _searchList.value = characterModelList.filter {
+                it.name.lowercase().contains(inputText.lowercase())
             }
         }
     }
 
     //Если сделаю удаление (крестик в EditText)
     fun transactionAllData(){
-        _searchList.value = characterList
+        _searchList.value = characterModelList
     }
 
 

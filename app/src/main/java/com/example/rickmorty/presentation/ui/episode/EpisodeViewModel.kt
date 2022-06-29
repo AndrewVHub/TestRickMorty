@@ -2,20 +2,19 @@ package com.example.rickmorty.presentation.ui.episode
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickmorty.data.models.episode.Episode
-import com.example.rickmorty.domain.interactor.GetEpisodeUseCase
+import com.example.rickmorty.data.models.episode.EpisodeModel
+import com.example.rickmorty.presentation.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class EpisodeViewModel(
-    private val getEpisodeUseCase: GetEpisodeUseCase
-) : ViewModel() {
+    private val interactor: EpisodeInteractor
+) : BaseViewModel() {
 
-    private var episodeList = listOf<Episode>()
+    private var episodeModelList = listOf<EpisodeModel>()
 
-    private val _searchList = MutableLiveData<List<Episode>>()
-    val searchList: LiveData<List<Episode>> = _searchList
+    private val _searchList = MutableLiveData<List<EpisodeModel>>()
+    val searchList: LiveData<List<EpisodeModel>> = _searchList
 
     private val _action = MutableLiveData<Action>()
     val action: LiveData<Action> = _action
@@ -25,10 +24,14 @@ class EpisodeViewModel(
     }
 
     fun load() {
+
+//        load(_searchList){
+//            interactor.getEpisodeList()
+//        }
         viewModelScope.launch {
             try {
-                _searchList.postValue(getEpisodeUseCase.execute())
-                episodeList = getEpisodeUseCase.execute()
+                _searchList.postValue(interactor.getEpisodeList())
+                episodeModelList = interactor.getEpisodeList()
             } catch (e: Throwable) {
                 _action.value = Action.ShowError("Нестабильное соединение")
             }
@@ -38,17 +41,17 @@ class EpisodeViewModel(
 
     fun searchEpisode(inputText: String) {
         if (inputText.isEmpty()){
-            _searchList.postValue(episodeList)
+            _searchList.postValue(episodeModelList)
         }else{
-            _searchList.value = episodeList.filter {
-                it.name.lowercase().contains(inputText)
+            _searchList.value = episodeModelList.filter {
+                it.name.lowercase().contains(inputText.lowercase())
             }
         }
     }
 
-    fun transactionAllData(){
-        _searchList.value = episodeList
-    }
+//    fun transactionAllData(){
+//        _searchList.value = episodeModelList
+//    }
 
 
     sealed class Action {

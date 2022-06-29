@@ -1,39 +1,22 @@
 package com.example.rickmorty.presentation.ui.home
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.rickmorty.databinding.FragmentHomeBinding
+import com.example.rickmorty.presentation.ui.base.BaseFragment
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
-    private lateinit var binding: FragmentHomeBinding
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun FragmentHomeBinding.initialize() {
         btnCharacter.setOnClickListener {
-            findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToCharacterFragment())
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCharacterFragment())
         }
         btnEpisode.setOnClickListener {
-            findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToEpisodeFragment())
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEpisodeFragment())
         }
         btnLocation.setOnClickListener {
-            findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToLocationFragment())
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLocationFragment())
         }
     }
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 }

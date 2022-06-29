@@ -5,12 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickmorty.R
-import com.example.rickmorty.data.models.episode.Episode
+import com.example.rickmorty.data.models.episode.EpisodeModel
 import com.example.rickmorty.databinding.EpisodeItemBinding
 
 class EpisodeAdapter: RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHolder>() {
 
-    var collection: List<Episode>? = emptyList()
+    var collection: List<EpisodeModel>? = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -18,7 +18,7 @@ class EpisodeAdapter: RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHolder>() {
 
     inner class EpisodeViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private val binding = EpisodeItemBinding.bind(view)
-        fun bind(item: Episode) = with(binding){
+        fun bind(item: EpisodeModel) = with(binding){
             tvName.text = item.name
             tvAirDateEdit.text = item.airDate
             tvEpisodeMarkEdit.text = item.episode

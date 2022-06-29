@@ -5,12 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickmorty.R
-import com.example.rickmorty.data.models.location.Location
+import com.example.rickmorty.data.models.location.LocationModel
 import com.example.rickmorty.databinding.LocationItemBinding
 
 class LocationAdapter: RecyclerView.Adapter<LocationAdapter.LocationViewHolder>() {
 
-    var collection: List<Location>? = emptyList()
+    var collection: List<LocationModel>? = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -18,7 +18,7 @@ class LocationAdapter: RecyclerView.Adapter<LocationAdapter.LocationViewHolder>(
 
     inner class LocationViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private val binding = LocationItemBinding.bind(view)
-        fun bind(item: Location) = with(binding){
+        fun bind(item: LocationModel) = with(binding){
             tvName.text = item.name
             tvTypeEdit.text = item.type
             tvDimensionEdit.text = item.dimension

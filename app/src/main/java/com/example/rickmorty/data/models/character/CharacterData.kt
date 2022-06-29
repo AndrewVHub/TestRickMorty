@@ -11,7 +11,7 @@ data class CharacterResponse(
     @SerializedName("image") val image: String
 )
 
-data class Character(
+data class CharacterModel(
     val id: Int,
     val name: String,
     val species: String,

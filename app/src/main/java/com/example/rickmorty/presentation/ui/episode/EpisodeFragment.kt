@@ -2,16 +2,12 @@ package com.example.rickmorty.presentation.ui.episode
 
 import android.app.Activity
 import android.content.Context
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.rickmorty.databinding.FragmentEpisodeBinding
 import com.example.rickmorty.presentation.ui.base.BaseFragment
 import com.example.rickmorty.presentation.ui.episode.adapters.EpisodeAdapter
@@ -27,6 +23,10 @@ class EpisodeFragment : BaseFragment<FragmentEpisodeBinding>(FragmentEpisodeBind
 
         viewModel.searchList.observe(viewLifecycleOwner) { data ->
             adapter.collection = data
+        }
+
+        toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
         }
 
         swipeRefresh.setOnRefreshListener {

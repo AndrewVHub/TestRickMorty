@@ -2,21 +2,19 @@ package com.example.rickmorty.presentation.ui.location
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickmorty.data.models.ApiResponse
-import com.example.rickmorty.data.models.location.Location
-import com.example.rickmorty.domain.interactor.GetLocationUseCase
+import com.example.rickmorty.data.models.location.LocationModel
+import com.example.rickmorty.presentation.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class LocationViewModel (
-    private val getLocationUseCase: GetLocationUseCase
-) : ViewModel() {
+    private val interactor: LocationInteractor
+) : BaseViewModel() {
 
-    private var locationList = listOf<Location>()
+    private var locationModelList = listOf<LocationModel>()
 
-    private val _searchList = MutableLiveData<List<Location>>()
-    val searchList: LiveData<List<Location>> = _searchList
+    private val _searchList = MutableLiveData<List<LocationModel>>()
+    val searchList: LiveData<List<LocationModel>> = _searchList
 
     private val _action = MutableLiveData<Action>()
     val action: LiveData<Action> = _action
@@ -26,10 +24,13 @@ class LocationViewModel (
     }
 
     fun load() {
+//        load(_searchList){
+//            interactor.getLocationList()
+//        }
         viewModelScope.launch {
             try {
-                _searchList.postValue(getLocationUseCase.execute())
-                locationList = getLocationUseCase.execute()
+                _searchList.postValue(interactor.getLocationList())
+                locationModelList = interactor.getLocationList()
             } catch (e: Throwable) {
                 _action.value = Action.ShowError("Нестабильное соединение")
             }
@@ -39,17 +40,17 @@ class LocationViewModel (
 
     fun searchLocation(inputText: String) {
         if (inputText.isEmpty()){
-            _searchList.postValue(locationList)
+            _searchList.postValue(locationModelList)
         }else{
-            _searchList.value = locationList.filter {
-                it.name.lowercase().contains(inputText)
+            _searchList.value = locationModelList.filter {
+                it.name.lowercase().contains(inputText.lowercase())
             }
         }
     }
 
-    fun transactionAllData(){
-        _searchList.value = locationList
-    }
+//    fun transactionAllData(){
+//        _searchList.value = locationModelList
+//    }
 
 
     sealed class Action {

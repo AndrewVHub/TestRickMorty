@@ -1,14 +1,13 @@
 package com.example.rickmorty.presentation.mapper
 
-import com.example.rickmorty.data.models.character.Character
+import com.example.rickmorty.data.models.character.CharacterModel
 import com.example.rickmorty.data.models.character.CharacterResponse
-import com.example.rickmorty.domain.mapper.Mapper
+import com.example.rickmorty.presentation.mapper.base.Mapper
 
-class CharacterMapper(): Mapper<CharacterResponse, Character>() {
-    override fun map(from: CharacterResponse): Character = from.run {
-        Character(
+object CharacterMapper: Mapper<CharacterResponse, CharacterModel>() {
+    override fun map(from: CharacterResponse): CharacterModel = from.run {
+        CharacterModel(
             id, name, species, gender, location, image
         )
     }
-
 }
