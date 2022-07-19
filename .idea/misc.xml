@@ -7,6 +7,7 @@
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/drawable/button_pressed.xml" value="0.293" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/drawable/buttonselector.xml" value="0.293" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/drawable/custom_search.xml" value="0.293" />
+        <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/drawable/ic__23.xml" value="0.2615" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/drawable/ic_backrow.xml" value="0.293" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/drawable/ic_cross.xml" value="0.2615" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/drawable/ic_icon_search.xml" value="0.293" />
@@ -14,15 +15,20 @@
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/drawable/ic_rickandmorty.xml" value="0.293" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/drawable/shape_button.xml" value="0.293" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/drawable/shape_corners.xml" value="0.293" />
+        <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout-land/activity_main.xml" value="0.4" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/character_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/custom_item.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/episode_item.xml" value="0.365625" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/fragment_character.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/fragment_episode.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/fragment_location.xml" value="0.35260416666666666" />
+        <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/fragment_multiple.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/location_item.xml" value="0.365625" />
         <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/shape_character_item.xml" value="0.365625" />
+        <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/test.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidProject/RickMorty/app/src/main/res/layout/test_layout.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

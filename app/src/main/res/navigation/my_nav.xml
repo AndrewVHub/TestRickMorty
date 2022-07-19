@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_locationFragment"
             app:destination="@id/locationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_multipleFragment"
+            app:destination="@id/multipleFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterFragment"
@@ -34,4 +37,9 @@
         android:id="@+id/locationFragment"
         android:name="com.example.rickmorty.presentation.ui.location.LocationFragment"
         android:label="LocationFragment" />
+    <fragment
+        android:id="@+id/multipleFragment"
+        android:name="com.example.rickmorty.presentation.ui.multiple.MultipleFragment"
+        android:label="fragment_multiple"
+        tools:layout="@layout/fragment_multiple" />
 </navigation>

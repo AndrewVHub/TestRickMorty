@@ -2,10 +2,12 @@ package com.example.rickmorty.presentation.ui.characters
 
 import android.app.Activity
 import android.content.Context
+import android.os.Build
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.example.rickmorty.databinding.FragmentCharacterBinding
@@ -16,11 +18,28 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharacterFragment : BaseFragment<FragmentCharacterBinding>(FragmentCharacterBinding::inflate) {
 
-    private val adapter = CharacterAdapter()
+
     private val viewModel: CharacterViewModel by viewModel()
+    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){
+        downloadProcess?.invoke()
+        downloadProcess = null
+    }
+
+
+    private var downloadProcess: (() -> Unit)? = null
 
     override fun FragmentCharacterBinding.initialize() {
 
+        val adapter = CharacterAdapter{ url, name->
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+                downloadProcess = {
+                    saveOnDevice(url, name)
+                }
+                requestPermissionLauncher.launch(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }else{
+                saveOnDevice(url, name)
+            }
+        }
         recyclerCharacter.adapter = adapter
 
         viewModel.searchList.observe(viewLifecycleOwner){data ->
@@ -66,5 +85,4 @@ class CharacterFragment : BaseFragment<FragmentCharacterBinding>(FragmentCharact
         val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
 }

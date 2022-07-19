@@ -10,7 +10,7 @@ class RickMortyApplication: Application() {
         super.onCreate()
         startKoin {
             androidContext(this@RickMortyApplication)
-            modules(listOf(serviceModule, viewmodelModule, interactorsModule, networkModule))
+            modules(listOf(serviceModule, viewmodelModule, interactorsModule, networkModule, downloadModule))
         }
     }
 }

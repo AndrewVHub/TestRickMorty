@@ -17,6 +17,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         btnLocation.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLocationFragment())
         }
+
+        btnMultiple.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMultipleFragment())
+        }
     }
 
 }

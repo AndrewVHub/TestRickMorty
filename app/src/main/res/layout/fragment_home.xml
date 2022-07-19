@@ -52,4 +52,15 @@
         app:layout_constraintStart_toStartOf="@+id/btnCharacter"
         app:layout_constraintTop_toBottomOf="@+id/btnLocation" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMultiple"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/CustomHomeButton"
+        android:text="Any ViewHolder"
+        app:icon="@drawable/ic_television"
+        app:layout_constraintEnd_toEndOf="@+id/btnEpisode"
+        app:layout_constraintStart_toStartOf="@+id/btnEpisode"
+        app:layout_constraintTop_toBottomOf="@+id/btnEpisode" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

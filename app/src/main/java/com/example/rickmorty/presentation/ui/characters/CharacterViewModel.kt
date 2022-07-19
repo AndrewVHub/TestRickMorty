@@ -1,5 +1,10 @@
 package com.example.rickmorty.presentation.ui.characters
 
+import android.app.DownloadManager
+import android.content.Context
+import android.location.LocationManager
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.ContextCompat.getSystemServiceName
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -7,6 +12,7 @@ import com.example.rickmorty.data.constants.ConstantKeys
 import com.example.rickmorty.data.models.character.CharacterModel
 import com.example.rickmorty.presentation.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
+
 
 class CharacterViewModel(
     private val interactor: CharacterInteractor
@@ -37,6 +43,8 @@ class CharacterViewModel(
         }
     }
 
+
+
     fun searchCharacter(inputText: String) {
         if (inputText.isEmpty()){
             _searchList.postValue(characterModelList)
@@ -48,9 +56,9 @@ class CharacterViewModel(
     }
 
     //Если сделаю удаление (крестик в EditText)
-    fun transactionAllData(){
-        _searchList.value = characterModelList
-    }
+//    fun transactionAllData(){
+//        _searchList.value = characterModelList
+//    }
 
 
     sealed class CharacterAction {

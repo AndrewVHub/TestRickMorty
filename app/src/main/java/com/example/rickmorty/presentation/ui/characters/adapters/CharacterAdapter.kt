@@ -9,7 +9,9 @@ import com.example.rickmorty.databinding.CharacterItemBinding
 import com.example.rickmorty.presentation.utils.load
 import com.example.rickmorty.data.models.character.CharacterModel
 
-class CharacterAdapter: RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+class CharacterAdapter(
+    private val onClick: (String, String) -> Unit
+): RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
     var collection: List<CharacterModel>? = emptyList()
         set(value) {
@@ -25,6 +27,8 @@ class CharacterAdapter: RecyclerView.Adapter<CharacterAdapter.CharacterViewHolde
             tvLocationEdit.text = item.location.name
             tvSpeciesEdit.text = item.species
             ivImageItem.load(item.image)
+            ivImageItem.setOnClickListener { onClick.invoke(item.image, item.name) }
+
         }
     }
 
