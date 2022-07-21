@@ -9,17 +9,18 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.rickmorty.databinding.FragmentCharacterBinding
 import com.example.rickmorty.presentation.ui.base.BaseFragment
 import com.example.rickmorty.presentation.ui.characters.adapters.CharacterAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class CharacterFragment : BaseFragment<FragmentCharacterBinding>(FragmentCharacterBinding::inflate) {
 
 
-    private val viewModel: CharacterViewModel by viewModel()
+    private val viewModel: CharacterViewModel by viewModels()
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){
         downloadProcess?.invoke()
         downloadProcess = null

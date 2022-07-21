@@ -5,9 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rickmorty.data.models.location.LocationModel
 import com.example.rickmorty.presentation.ui.base.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LocationViewModel (
+@HiltViewModel
+class LocationViewModel @Inject constructor(
     private val interactor: LocationInteractor
 ) : BaseViewModel() {
 

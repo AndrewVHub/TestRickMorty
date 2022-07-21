@@ -8,9 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.rickmorty.data.models.location.LocationModel
 import com.example.rickmorty.presentation.ui.base.BaseViewModel
 import com.example.rickmorty.presentation.ui.location.LocationInteractor
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MultipleViewModel (
+@HiltViewModel
+class MultipleViewModel  @Inject constructor(
     private val interactor: LocationInteractor
 ) : BaseViewModel() {
 

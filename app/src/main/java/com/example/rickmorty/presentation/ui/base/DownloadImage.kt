@@ -5,11 +5,13 @@ import android.content.Context
 import android.net.Uri
 import android.os.Environment
 import android.widget.Toast
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 import java.io.File
+import javax.inject.Inject
 
-class DownloadImage(
-    private val context: Context
+class DownloadImage @Inject constructor(
+    @ApplicationContext private val  context: Context
 ) {
     fun saveOnDevice(url: String, fileName: String) {
         try {

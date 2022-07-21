@@ -5,9 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rickmorty.data.models.episode.EpisodeModel
 import com.example.rickmorty.presentation.ui.base.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EpisodeViewModel(
+@HiltViewModel
+class EpisodeViewModel @Inject constructor(
     private val interactor: EpisodeInteractor
 ) : BaseViewModel() {
 

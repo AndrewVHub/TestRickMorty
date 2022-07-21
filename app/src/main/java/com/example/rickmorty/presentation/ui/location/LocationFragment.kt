@@ -7,16 +7,18 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.rickmorty.databinding.FragmentLocationBinding
 import com.example.rickmorty.presentation.ui.base.BaseFragment
 import com.example.rickmorty.presentation.ui.location.adapters.LocationAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class LocationFragment : BaseFragment<FragmentLocationBinding>(FragmentLocationBinding::inflate) {
 
-    private val viewModel: LocationViewModel by viewModel()
+    private val viewModel: LocationViewModel by viewModels()
     private val adapter = LocationAdapter()
 
     override fun FragmentLocationBinding.initialize() {

@@ -4,7 +4,7 @@ import com.example.rickmorty.data.models.character.CharacterResponse
 import com.example.rickmorty.data.models.episode.EpisodeResponse
 import com.example.rickmorty.data.models.location.LocationResponse
 
-class ApiWorkerImpl(
+class ApiWorkerImpl (
     private val service: AppService
 ): ApiWorker {
     override suspend fun getCharacters(): List<CharacterResponse> = service.getCharacters().results
