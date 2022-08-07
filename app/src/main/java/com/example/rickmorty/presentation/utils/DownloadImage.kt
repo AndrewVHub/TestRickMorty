@@ -1,4 +1,4 @@
-package com.example.rickmorty.presentation.ui.base
+package com.example.rickmorty.presentation.utils
 
 import android.app.DownloadManager
 import android.content.Context

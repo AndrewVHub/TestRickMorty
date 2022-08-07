@@ -1,9 +1,7 @@
 package com.example.rickmorty.presentation.ui.multiple
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.example.rickmorty.data.models.location.LocationModel
 import com.example.rickmorty.presentation.ui.base.BaseViewModel

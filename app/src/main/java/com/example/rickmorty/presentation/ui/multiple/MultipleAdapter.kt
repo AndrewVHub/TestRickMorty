@@ -1,14 +1,10 @@
 package com.example.rickmorty.presentation.ui.multiple
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rickmorty.R
-import com.example.rickmorty.data.models.location.LocationModel
 import com.example.rickmorty.databinding.CustomItemBinding
 import com.example.rickmorty.databinding.LocationItemBinding
-import com.example.rickmorty.presentation.ui.location.adapters.LocationAdapter
 
 class MultipleAdapter: RecyclerView.Adapter<MultipleRecyclerViewHolder>() {
 

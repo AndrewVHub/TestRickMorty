@@ -1,6 +1,6 @@
 package com.example.rickmorty.data.network
 
-import com.example.rickmorty.data.models.*
+import com.example.rickmorty.data.models.ApiResponse
 import com.example.rickmorty.data.models.character.CharacterResponse
 import com.example.rickmorty.data.models.episode.EpisodeResponse
 import com.example.rickmorty.data.models.location.LocationResponse
